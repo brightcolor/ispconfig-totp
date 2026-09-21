@@ -25,9 +25,22 @@ $conf = array();
 require "$iface/lib/config.inc.php";
 
 mysqli_report(MYSQLI_REPORT_OFF);
-$db = @new mysqli($conf['db_host'], $conf['db_user'], $conf['db_password'], $conf['db_database'], (int) ($conf['db_port'] ?? 3306));
+
+/*
+ * The panel's own database user may only read and write (SELECT, INSERT,
+ * UPDATE, DELETE on the panel database), which covers the new table once it
+ * exists. Creating and dropping it needs MySQL's root, reached through the
+ * local socket the way the mysql client does for the system's root user.
+ */
+if ($mode === 'check') {
+	$db = @new mysqli($conf['db_host'], $conf['db_user'], $conf['db_password'], $conf['db_database'], (int) ($conf['db_port'] ?? 3306));
+	$who = 'the panel credentials from lib/config.inc.php';
+} else {
+	$db = @new mysqli('localhost', 'root', '', $conf['db_database']);
+	$who = "MySQL's root over the local socket (run this as the system's root)";
+}
 if ($db->connect_errno) {
-	fwrite(STDERR, 'error: cannot reach the panel database with the credentials from lib/config.inc.php: ' . $db->connect_error . "\n");
+	fwrite(STDERR, "error: cannot reach the panel database as $who: " . $db->connect_error . "\n");
 	exit(1);
 }
 $db->set_charset('utf8mb4');
