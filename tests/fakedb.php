@@ -10,11 +10,12 @@ class totpauth_fakedb
 	public $pdo;
 	private $affected = 0;
 
-	public function __construct()
+	/* $file: a SQLite file that keeps its data between requests (harness). */
+	public function __construct(string $file = ':memory:')
 	{
-		$this->pdo = new PDO('sqlite::memory:');
+		$this->pdo = new PDO('sqlite:' . $file);
 		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$this->pdo->exec('CREATE TABLE totpauth_user (
+		$this->pdo->exec('CREATE TABLE IF NOT EXISTS totpauth_user (
 			userid INTEGER PRIMARY KEY,
 			secret TEXT NOT NULL,
 			recovery TEXT NOT NULL,
@@ -22,7 +23,7 @@ class totpauth_fakedb
 			failed INTEGER NOT NULL DEFAULT 0,
 			created TEXT NOT NULL
 		)');
-		$this->pdo->exec("CREATE TABLE sys_user (userid INTEGER PRIMARY KEY, otp_type TEXT NOT NULL DEFAULT 'none')");
+		$this->pdo->exec("CREATE TABLE IF NOT EXISTS sys_user (userid INTEGER PRIMARY KEY, otp_type TEXT NOT NULL DEFAULT 'none')");
 	}
 
 	public function queryOneRecord($sql, ...$params)
