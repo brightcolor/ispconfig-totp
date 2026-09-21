@@ -1,0 +1,58 @@
+<?php
+// Code page
+$wb['totpauth_title_txt'] = 'Confirm with your app';
+$wb['totpauth_desc_txt'] = 'Enter the six-digit code from your authenticator app.';
+$wb['totpauth_code_label_txt'] = 'Code from the app';
+$wb['totpauth_submit_txt'] = 'Confirm';
+$wb['totpauth_recovery_hint_txt'] = 'No access to the app? Enter one of your recovery codes.';
+$wb['totpauth_cancel_txt'] = 'Cancel and return to the login';
+$wb['totpauth_err_code_txt'] = 'The code does not match. Use the current code from the app, it changes every 30 seconds. If your phone clock is off, set it to automatic time.';
+$wb['totpauth_err_recovery_txt'] = 'This recovery code does not match or has been used already.';
+$wb['totpauth_err_format_txt'] = 'Enter the six digits from the app or a recovery code in the format xxxx-xxxx-xxxx.';
+$wb['totpauth_err_locked_txt'] = 'Too many failed attempts, the app login is locked. Sign in with a recovery code or ask the administrator to reset the app login.';
+$wb['totpauth_err_session_tries_txt'] = 'Five wrong codes in a row, the login was ended. Please sign in again.';
+$wb['totpauth_err_expired_txt'] = 'The login has expired, the code has to follow the password within 10 minutes. Please sign in again.';
+$wb['totpauth_err_server_txt'] = 'The app login is broken on the server, the key file is missing or does not match. Please contact the administrator.';
+$wb['totpauth_back_to_login_txt'] = 'Back to the login';
+
+// Profile
+$wb['totpauth_row_label_txt'] = 'Authenticator app';
+$wb['totpauth_state_on_txt'] = 'Active';
+$wb['totpauth_state_off_txt'] = 'Not set up';
+$wb['totpauth_recovery_left_txt'] = '%d recovery codes left';
+$wb['totpauth_setup_txt'] = 'Set up';
+$wb['totpauth_disable_txt'] = 'Turn off';
+$wb['totpauth_email_locked_txt'] = 'While the app is active, the code by email stays off.';
+$wb['totpauth_force_change_txt'] = 'Note for administrators: "Force password change after X days" is above 0. Users with an expired password then sign in without an app code. Set the value to 0 under System → Interface → Interface Config, tab "Misc".';
+
+// Modal
+$wb['totpauth_modal_title_txt'] = 'Set up an authenticator app';
+$wb['totpauth_step1_txt'] = 'Scan the QR code with your authenticator app, for example Aegis, Google Authenticator, Microsoft Authenticator or 1Password.';
+$wb['totpauth_manual_txt'] = 'Cannot scan the QR code? Enter the key by hand:';
+$wb['totpauth_step2_txt'] = 'Enter the six-digit code the app shows now.';
+$wb['totpauth_confirm_txt'] = 'Confirm';
+$wb['totpauth_next_txt'] = 'Next';
+$wb['totpauth_back_txt'] = 'Back';
+$wb['totpauth_close_txt'] = 'Close';
+$wb['totpauth_step3_txt'] = 'The app is active. Keep these recovery codes somewhere safe. Each code works once when you cannot reach the app. They are shown only now.';
+$wb['totpauth_copy_txt'] = 'Copy';
+$wb['totpauth_copied_txt'] = 'Copied';
+$wb['totpauth_download_txt'] = 'Save as file';
+$wb['totpauth_done_txt'] = 'Done';
+$wb['totpauth_disable_title_txt'] = 'Turn off the authenticator app';
+$wb['totpauth_disable_desc_txt'] = 'Confirm with a code from the app or a recovery code. Afterwards you sign in with your password only, until you choose a second factor again.';
+$wb['totpauth_disabled_txt'] = 'The app login is turned off.';
+
+// Admin
+$wb['totpauth_admin_reset_txt'] = 'Reset app login';
+$wb['totpauth_admin_confirm_txt'] = 'Reset the app login of this account? The user then signs in with the password only and can set up the app again.';
+$wb['totpauth_admin_done_txt'] = 'The app login has been reset.';
+
+// API errors
+$wb['totpauth_err_session_txt'] = 'Your session has expired. Reload the page and sign in.';
+$wb['totpauth_err_forbidden_txt'] = 'Only an administrator can do this.';
+$wb['totpauth_err_request_txt'] = 'The request was incomplete. Reload the page and try again.';
+$wb['totpauth_err_setup_expired_txt'] = 'The setup has expired. Please start it again.';
+$wb['totpauth_err_not_enabled_txt'] = 'No app is set up for this account.';
+$wb['totpauth_err_network_txt'] = 'The server could not be reached. Check your connection and try again.';
+$wb['totpauth_err_unexpected_txt'] = 'The server answered unexpectedly. Reload the page and try again. If the error stays, tell the administrator.';

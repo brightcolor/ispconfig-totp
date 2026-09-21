@@ -1,0 +1,24 @@
+<tmpl_if name="error">
+<div class="alert alert-danger" role="alert"><tmpl_var name="error"></div>
+</tmpl_if>
+<tmpl_if name="ended">
+<p><a class="btn btn-default formbutton-default" href="../login/index.php">{tmpl_var name='totpauth_back_to_login_txt'}</a></p>
+<tmpl_else>
+<h2 class="totpauth-title">{tmpl_var name='totpauth_title_txt'}</h2>
+<p>{tmpl_var name='totpauth_desc_txt'}</p>
+<form accept-charset="UTF-8" role="form" method="post" action="verify.php" autocomplete="off">
+<fieldset>
+	<div class="form-group">
+		<label for="totpauth-code" class="sr-only">{tmpl_var name='totpauth_code_label_txt'}</label>
+		<input class="form-control" placeholder="{tmpl_var name='totpauth_code_label_txt'}" name="code" id="totpauth-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="20" autofocus required>
+	</div>
+	<div class="right">
+		<input class="btn btn-default formbutton-default" type="submit" value="{tmpl_var name='totpauth_submit_txt'}">
+	</div>
+	<p class="help-block">{tmpl_var name='totpauth_recovery_hint_txt'}</p>
+	<p><a href="verify.php?cancel=1">{tmpl_var name='totpauth_cancel_txt'}</a></p>
+	<input type="hidden" name="_csrf_id" value="{tmpl_var name='_csrf_id'}" />
+	<input type="hidden" name="_csrf_key" value="{tmpl_var name='_csrf_key'}" />
+</fieldset>
+</form>
+</tmpl_if>
