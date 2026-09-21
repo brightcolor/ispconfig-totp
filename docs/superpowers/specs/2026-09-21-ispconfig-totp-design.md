@@ -49,7 +49,7 @@ Navigation: `nav.php` zeigt nur Module aus `sys_user.modules`.
 | Spalte | Typ | Inhalt |
 |---|---|---|
 | `userid` | int unsigned, PK | `sys_user.userid` |
-| `secret` | varbinary(255) | Schlüssel, mit `sodium_crypto_secretbox` verschlüsselt, Nonce vorangestellt |
+| `secret` | varchar(255) | Schlüssel, mit XChaCha20-Poly1305 verschlüsselt und über die Zusatzdaten an die `userid` gebunden, Nonce vorangestellt, Base64 |
 | `recovery` | text | JSON-Liste von `password_hash()` der acht Wiederherstellungscodes |
 | `last_step` | bigint | zuletzt angenommener Zeitschritt (Schutz vor Wiederverwendung) |
 | `failed` | int | Fehlversuche seit der letzten erfolgreichen Anmeldung |
@@ -148,8 +148,9 @@ zurückzusetzen.“ Die API antwortet immer als JSON mit `error` im Klartext;
 1. Panel-Version und die Einhakpunkte prüfen (Plugin-Loader, `login`-Ereignis,
    `js.d`), `force_password_change_days` prüfen.
 2. Schlüsseldatei anlegen, **nie** überschreiben.
-3. Tabelle anlegen (`CREATE TABLE IF NOT EXISTS`) über die Zugangsdaten aus
-   `interface/lib/config.inc.php`.
+3. Tabelle anlegen (`CREATE TABLE IF NOT EXISTS`) als MySQL-root über den
+   lokalen Socket. Der Datenbanknutzer des Panels darf nur lesen und
+   schreiben, das deckt die neue Tabelle ab.
 4. Dateien in einen Zwischenordner, prüfen, dann tauschen; Rechte wie beim
    Standard-Theme.
 5. Den Plugin-Cache aller Sitzungen muss niemand leeren: ISPConfig baut ihn
