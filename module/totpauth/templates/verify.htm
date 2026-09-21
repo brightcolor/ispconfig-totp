@@ -1,11 +1,14 @@
+<tmpl_if name="ended">
 <tmpl_if name="error">
 <div class="alert alert-danger" role="alert"><tmpl_var name="error"></div>
 </tmpl_if>
-<tmpl_if name="ended">
 <p><a class="btn btn-default formbutton-default" href="../login/index.php">{tmpl_var name='totpauth_back_to_login_txt'}</a></p>
 <tmpl_else>
 <h2 class="totpauth-title">{tmpl_var name='totpauth_title_txt'}</h2>
 <p>{tmpl_var name='totpauth_desc_txt'}</p>
+<tmpl_if name="error">
+<div class="alert alert-danger" role="alert"><tmpl_var name="error"></div>
+</tmpl_if>
 <form accept-charset="UTF-8" role="form" method="post" action="verify.php" autocomplete="off">
 <fieldset>
 	<div class="form-group">
