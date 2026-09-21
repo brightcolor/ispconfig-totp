@@ -4,6 +4,11 @@
  * Expects ISPConfig's $app to be loaded.
  */
 
+// Called by URL instead of from a panel page: nothing to do here.
+if (!defined('ISPC_ROOT_PATH')) {
+	exit;
+}
+
 require_once __DIR__ . '/totp.inc.php';
 require_once __DIR__ . '/store.inc.php';
 
